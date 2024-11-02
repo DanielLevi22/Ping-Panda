@@ -1,42 +1,56 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query"
-import { RecentPost } from "./components/post"
-import { client } from "./lib/client"
+import { Heading } from "./components/heading";
+import { MaxWidthWrapper } from "./components/max-widh-wrapper";
+import { Check } from 'lucide-react'
+import { ShinyButton } from "./components/shiny-button";
+export default function Page() {
+  return(
+   <>
+    <section className="relative pt-24 sm:py-32 bg-brand-25 ">
+      <MaxWidthWrapper className="px-4 ">
+        <div className="relative mx-auto text-center flex flex-col items-center gap-10">
+          <div>
+            <Heading>
+              <span>Real-Time Saas Insights,</span>
+              <br />
+              <span className="relative bg-gradient-to-r from-brand-700 to-brand-800 text-transparent bg-clip-text" >Delivered to Your Discord</span>
+            </Heading>
+          </div>
 
-export default async function Home() {
-  const res = await client.post.recent.$get()
-  const recentPost = await res.json()
+          <p className="text-base/7 text-gray-600 max-w-prose">
+            PingPanda is the easiest way to monitor your SaaS.Get instant notifications for {""}
+            <span className="font-semibold text-gray-700">
+              sales, new users, or any other evemt
+            </span>{" "}
+            sent directly to your discord.
+         </p>
 
-  /**
-   * This is the intended way to prefetch data on the server to have it immediately available in the client.
-   * But: you could also just pass the post as a prop instead of using the `HydrationBoundary`
-   */
-  const queryClient = new QueryClient()
+         <ul className="space-y-2 text-base/7 text-gray-600 text-left flex flex-col items-start">
+          {["Realt-time Discord Alerts for critical events", "Buy once, use forever", "Track sales, new users or any other event"]
+            .map((item, index) => (
+              <li key={index} className="flex gap-1.5 items-center text-left">
+                <Check className="size-5 shrink-0 text-brand-700"/> 
+                
+                {item}
+              </li>
+            ))
+          }
+         </ul>
 
-  await queryClient.prefetchQuery({
-    queryFn: () => recentPost,
-    queryKey: ["get-recent-post"],
-  })
-
-  return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-medium font-heading tracking-tight sm:text-[5rem]">
-            <span className="text-brand-700">j</span>stack
-          </h1>
-
-          <p className="text-center max-w-prose text-balance">
-            The modern way to confidently ship high-performance, low-cost
-            Next.js apps. End-to-end typesafe with an incredible DX.
-          </p>
-
-          <RecentPost />
+         <div className="w-full max-w-80">
+          <ShinyButton 
+            href="/sign-up"
+            className="relative z-10 h-14 w-full text-base shadow-lg transition-shadow duration-300 hover:shadow-xl">
+              Start For Free Today
+          </ShinyButton>
+         </div>
         </div>
-      </main>
-    </HydrationBoundary>
+      </MaxWidthWrapper>
+    </section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    
+   </>
   )
 }
