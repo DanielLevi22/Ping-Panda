@@ -1,6 +1,6 @@
 import Link from "next/link";
 import  { MaxWidthWrapper } from "./max-width-wrapper";
-
+import { SignOutButton} from "@clerk/nextjs"
 
 
 export function NavBar() {
@@ -15,6 +15,9 @@ export function NavBar() {
           <div className="h-full flex items-center space-x-4">
             {user  ?
               <>
+                <SignOutButton>
+                  <button></button>
+                </SignOutButton>
               </>:
               null  
            }
