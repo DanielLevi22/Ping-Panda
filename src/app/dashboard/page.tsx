@@ -1,8 +1,26 @@
-export default function Page() {
+import { DashBoardPage } from "@/components/dashboard-page";
+import { db } from "@/db";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
+export default async function Page() {
+  const auth = await currentUser()
+  if(!auth) {
+    redirect("/sign-in")
+  }
+
+  const user =  await db.user.findUnique({
+    where: {
+      externalId: auth.id
+    }
+  })
+  if(!user) {
+    redirect("/sign-in")
+  }
+
     return (
-        <div>
-            <h1>Welcome to the Home Page</h1>
-            <p>This is the content of the home page.</p>
-        </div>
+        <DashBoardPage title="Dashboard">
+          dashboard
+        </DashBoardPage>
     );
 }
