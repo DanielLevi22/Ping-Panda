@@ -1,4 +1,4 @@
-import { Inbox, UserCircle } from "lucide-react";
+import { Cog, Headphones, Inbox, Mic, UserCircle } from "lucide-react";
 import Image from "next/image";
 
 export function DmList() {
@@ -50,7 +50,21 @@ export function DmList() {
         </div>
       </div>
 
-      <div className="p-2 bg-[#292V2F] flex items-center"></div>
+      <div className="p-2 bg-[#292b2f] flex items-center">
+        <div className="size-8 rounded-full bg-brand-700 mr-2" />
+        <div className="flex-1">
+          <p className="text-sm font-medium text-white">You</p>
+          <p className="text-xs text-[#b9bbbe] flex items-center">
+            @your_account
+          </p>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Mic className="size-5 text-[#b9bbbe] hover:text-white cursor-pointer" />
+          <Headphones className="size-5 text-[#b9bbbe] hover:text-white cursor-pointer" />
+          <Cog className="size-5 text-[#b9bbbe] hover:text-white cursor-pointer" />
+        </div>
+      </div>
     </div>
   )
 }
