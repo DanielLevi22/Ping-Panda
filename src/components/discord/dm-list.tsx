@@ -37,15 +37,18 @@ export function DmList() {
             <span className="font-medium">PingPanda</span>
           </div>
           <div className="my-1 space-y-px ">
-            {[...Array(4)].map((_,index) => (
-              <div 
-                key={index}
-                className="flex items-center px-2 py-1.5 rounded text-gray-600 cursor-not-allowed"
-              >
-                <div className="size-8 rounded-full bg-discord-background mr-3" />
-                <span className="font-medium">User {index + 1}</span>
-              </div>
-            ))}
+            {[...Array(4)].map((_, i ) =>{
+              const index =  i * 10
+              return (
+                <div 
+                  key={index}
+                  className="flex items-center px-2 py-1.5 rounded text-gray-600 cursor-not-allowed"
+                >
+                  <div className="size-8 rounded-full bg-discord-background mr-3" />
+                  <span className="font-medium">User {index + 1}</span>
+                </div>
+              )
+            } )}
           </div>
         </div>
       </div>

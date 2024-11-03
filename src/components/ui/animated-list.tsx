@@ -1,6 +1,8 @@
 "use client";
 
-import React, { ReactElement, useEffect, useMemo, useState } from "react";
+import { Children, memo, useEffect, useState } from "react";
+import type { ReactElement, ReactNode } from "react"; 
+
 import { AnimatePresence, motion } from "framer-motion";
 
 export interface AnimatedListProps {
@@ -9,11 +11,11 @@ export interface AnimatedListProps {
   delay?: number;
 }
 
-export const AnimatedList = React.memo(
+export const AnimatedList = memo(
   ({ className, children, delay = 1000 }: AnimatedListProps) => {
    
-    const [messages, setMessages] = useState<React.ReactNode[]>([]);
-    const childrenArray = React.Children.toArray(children) 
+    const [messages, setMessages] = useState<ReactNode[]>([]);
+    const childrenArray = Children.toArray(children) 
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -30,7 +32,7 @@ export const AnimatedList = React.memo(
       }, [childrenArray, delay, messages.length]);
 
     return (
-      <div className={`flex flex-col items-center gap-4 ${className}`}>
+      <div className={`flex flex-col-reverse items-center gap-4 ${className}`}>
         <AnimatePresence>
           {messages.map((item) => (
             <AnimatedListItem key={(item as ReactElement).key}>

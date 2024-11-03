@@ -1,6 +1,6 @@
 import { Gift, HelpCircle, Inbox, Menu, Phone, Pin, PlusCircle, Search, Smile, Sticker, UserCircle, Video } from "lucide-react";
 import Image from "next/image";
-import { PropsWithChildren } from "react"
+import type { PropsWithChildren } from "react"
 
 export function DiscordChatLayout({ children }: PropsWithChildren) {
   return(
