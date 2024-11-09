@@ -11,9 +11,9 @@ const app = new Hono().basePath("/api").use(cors())
  *
  * All routers added in /server/routers should be manually added here.
  */
-const appRouter = app.route("/auth", authRouter)
-                     .route("/auth", categoryRouter)
-
+const appRouter = app
+  .route("/auth", authRouter)
+  .route("/category", categoryRouter)
 
 // The handler Next.js uses to answer API requests
 export const httpHandler = handle(app)
