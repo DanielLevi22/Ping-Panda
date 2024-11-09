@@ -3,6 +3,9 @@ import { db } from "@/db"
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import { DashboardPageContent } from "./dashboard-page-content"
+import { CreateEventCategoryModal } from "@/components/create-event-category-modal"
+import { Button } from "@/components/ui/button"
+import { PlusIcon } from "lucide-react"
 
 export default async function Page() {
   const auth = await currentUser()
@@ -20,7 +23,17 @@ export default async function Page() {
   }
 
   return (
-    <DashBoardPage title="Dashboard">
+    <DashBoardPage
+      cta={
+        <CreateEventCategoryModal>
+          <Button>
+            <PlusIcon className="size-4 mr-2" />
+            Create Event Category
+          </Button>
+        </CreateEventCategoryModal>
+      }
+      title="Dashboard"
+    >
       <DashboardPageContent />
     </DashBoardPage>
   )

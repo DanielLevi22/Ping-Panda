@@ -22,17 +22,17 @@ export function DashboardPageContent() {
     },
   })
 
-  // const { mutate: deleteCategory, isPending: isDeletingCategory } = useMutation(
-  //   {
-  //     mutationFn: async (name: string) => {
-  //       await client.category.deleteCategory.$post({ name })
-  //     },
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries({ queryKey: ["user-event-categories"] })
-  //       setDeletingCategory(null)
-  //     },
-  //   }
-  // )
+  const { mutate: deleteCategory, isPending: isDeletingCategory } = useMutation(
+    {
+      mutationFn: async (name: string) => {
+        await client.category.deleteCategory.$post({ name })
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["user-event-categories"] })
+        setDeletingCategory(null)
+      },
+    }
+  )
 
   if (isEventCategoriesLoading) {
     return (
@@ -148,7 +148,7 @@ export function DashboardPageContent() {
             <Button variant="outline" onClick={() => setDeletingCategory(null)}>
               Cancel
             </Button>
-            {/* <Button
+            <Button
               variant="destructive"
               onClick={() =>
                 deletingCategory && deleteCategory(deletingCategory)
@@ -156,7 +156,7 @@ export function DashboardPageContent() {
               disabled={isDeletingCategory}
             >
               {isDeletingCategory ? "Deleting..." : "Delete"}
-            </Button> */}
+            </Button>
           </div>
         </div>
       </Modal>
