@@ -1,4 +1,4 @@
-import { DashBoardPage } from "@/components/dashboard-page"
+import { DashboardPage } from "../../components/dashboard-page"
 import { db } from "@/db"
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
@@ -23,10 +23,10 @@ export default async function Page() {
   }
 
   return (
-    <DashBoardPage
+    <DashboardPage
       cta={
         <CreateEventCategoryModal>
-          <Button>
+          <Button className="w-full sm:w-fit">
             <PlusIcon className="size-4 mr-2" />
             Create Event Category
           </Button>
@@ -35,6 +35,6 @@ export default async function Page() {
       title="Dashboard"
     >
       <DashboardPageContent />
-    </DashBoardPage>
+    </DashboardPage>
   )
 }
