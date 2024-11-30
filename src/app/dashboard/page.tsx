@@ -18,6 +18,7 @@ export default async function Page() {
       externalId: auth.id,
     },
   })
+  console.log(user)
   if (!user) {
     redirect("/sign-in")
   }
