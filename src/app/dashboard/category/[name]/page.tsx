@@ -2,6 +2,7 @@ import { DashboardPage } from "@/components/dashboard-page"
 import { db } from "@/db"
 import isAuthenticated from "@/lib/validators/isAuthenticated"
 import { notFound } from "next/navigation"
+import { CategoryPageContent } from "./category-page-content"
 
 interface PageProps {
   params: {
@@ -44,7 +45,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <DashboardPage title={`${category.emoji} ${category.name} events`}>
-
+      <CategoryPageContent  category={category} hasEvents={hasEvents}/>
     </DashboardPage>
   )
 }
